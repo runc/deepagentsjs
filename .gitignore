@@ -61,6 +61,6 @@ agent-os
 # Sandbox workspace directory - created at runtime
 sandbox-workspace/
 coverage
-workspace/
+/workspace/
 __pycache__/
 .venv/
