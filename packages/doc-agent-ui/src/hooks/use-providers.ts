@@ -25,6 +25,11 @@ export interface UseProvidersResult {
 }
 
 async function migrateEnvProviderIfEmpty(): Promise<void> {
+  // Dev-only convenience: production builds must not embed API keys from VITE_* env vars.
+  if (!import.meta.env.DEV) {
+    return;
+  }
+
   const existing = await store.listProviders();
   if (existing.length > 0) {
     return;

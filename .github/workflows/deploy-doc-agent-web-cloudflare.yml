@@ -1,0 +1,56 @@
+name: Deploy Doc Agent Web to Cloudflare Pages
+
+on:
+  push:
+    branches: [main, feature/doc-agent]
+    paths:
+      - "apps/doc-agent-web/**"
+      - "packages/doc-agent-*/**"
+      - "libs/deepagents/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - ".github/workflows/deploy-doc-agent-web-cloudflare.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-doc-agent-web-cloudflare
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0e279bb959325dab635dd2c09392533439d90093 # v6.0.8
+
+      - name: Setup Node
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build deepagents browser bundle
+        run: pnpm --filter deepagents build
+
+      # Provider API keys are configured per-user in the browser (IndexedDB), never at build time.
+      - name: Build Doc Agent Web
+        run: pnpm --filter @doc-agent/web build
+        env:
+          NODE_ENV: production
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/doc-agent-web/dist --project-name=doc-agent --branch=${{ github.ref_name }}

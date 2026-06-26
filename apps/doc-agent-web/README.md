@@ -43,12 +43,16 @@ pnpm dev:doc-agent:ext
 
 Load `.output/chrome-mv3` in `chrome://extensions` (Developer mode → Load unpacked).
 
-## Environment variables
+## Provider credentials
+
+**Production (Cloudflare Pages, etc.):** users add API keys in the in-app settings UI. Keys stay in the browser (IndexedDB) and are never baked into the build.
+
+**Local dev only:** optional `.env.local` variables for first-run convenience:
 
 | Variable | Description |
 |----------|-------------|
 | `VITE_PROVIDER_KIND` | `openai-compatible` (default) or `anthropic` |
-| `VITE_PROVIDER_API_KEY` | API key |
+| `VITE_PROVIDER_API_KEY` | API key (dev only; not used in production builds) |
 | `VITE_PROVIDER_MODEL` | Model id (default `gpt-4o-mini`) |
 | `VITE_PROVIDER_BASE_URL` | Optional custom base URL |
 
@@ -57,4 +61,4 @@ Load `.output/chrome-mv3` in `chrome://extensions` (Developer mode → Load unpa
 - In-process `createDeepAgent()` via `deepagents/browser`
 - Token-level streaming + tool call cards + todos
 - Shared UI between Web and Extension Side Panel
-- Provider config via env vars (settings UI in M1)
+- Provider config via in-app settings UI (browser storage); `.env.local` is dev-only
