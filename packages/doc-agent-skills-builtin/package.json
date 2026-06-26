@@ -1,0 +1,16 @@
+{
+  "name": "@doc-agent/skills-builtin",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.13",
+    "typescript": "^6.0.2"
+  }
+}

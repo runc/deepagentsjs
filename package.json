@@ -17,6 +17,9 @@
     "test:int": "pnpm --filter \"./libs/*\" --filter \"./libs/providers/*\" test:int",
     "test:watch": "pnpm --filter \"./libs/*\" test:watch",
     "test:coverage": "pnpm --filter \"./libs/*\" test:coverage",
+    "dev:doc-agent:web": "pnpm --filter @doc-agent/web dev",
+    "dev:doc-agent:ext": "pnpm --filter @doc-agent/extension dev",
+    "build:doc-agent": "pnpm --filter deepagents build && pnpm --filter \"@doc-agent/*\" build",
     "changeset:version": "changeset version",
     "release": "pnpm build && changeset publish"
   },

@@ -1,0 +1,33 @@
+{
+  "name": "@doc-agent/extension",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@doc-agent/core": "workspace:*",
+    "@doc-agent/skills-builtin": "workspace:*",
+    "@doc-agent/storage": "workspace:*",
+    "@doc-agent/ui": "workspace:*",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "util": "^0.12.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.8",
+    "@types/path-browserify": "^1.0.3",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@wxt-dev/module-react": "^1.1.5",
+    "tailwindcss": "^4.1.8",
+    "typescript": "^6.0.2",
+    "wxt": "^0.20.14"
+  }
+}

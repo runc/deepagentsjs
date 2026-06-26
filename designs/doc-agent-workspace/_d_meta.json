@@ -1,0 +1,18 @@
+{
+  "type": "design",
+  "designSystems": [],
+  "primaryDesignSystem": null,
+  "assets": {
+    "Doc Agent Workspace UI": {
+      "versions": [
+        {
+          "path": "index.html",
+          "createdAt": "2026-06-12T08:24:02.933Z",
+          "status": "needs-review"
+        }
+      ]
+    }
+  },
+  "createdAt": "2026-06-12T08:24:02.934Z",
+  "updatedAt": "2026-06-12T08:24:02.934Z"
+}
