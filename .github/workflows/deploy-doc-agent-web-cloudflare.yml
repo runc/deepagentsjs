@@ -55,7 +55,9 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Deploy to Cloudflare Pages
-        run: pnpm dlx wrangler@3 pages deploy apps/doc-agent-web/dist --project-name=doc-agent --branch=${{ github.ref_name }}
+        # Always deploy to the production branch so https://doc-agent.pages.dev is updated.
+        # (Preview URLs use branch aliases; the apex *.pages.dev domain follows production-branch.)
+        run: pnpm dlx wrangler@3 pages deploy apps/doc-agent-web/dist --project-name=doc-agent --branch=main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

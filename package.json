@@ -21,7 +21,7 @@
     "dev:doc-agent:ext": "pnpm --filter @doc-agent/extension dev",
     "build:doc-agent": "pnpm --filter deepagents build && pnpm --filter \"@doc-agent/*\" build",
     "build:doc-agent:web": "pnpm --filter deepagents build && pnpm --filter @doc-agent/web build",
-    "deploy:doc-agent:web": "pnpm build:doc-agent:web && pnpm dlx wrangler pages deploy apps/doc-agent-web/dist --project-name=doc-agent",
+    "deploy:doc-agent:web": "pnpm build:doc-agent:web && pnpm dlx wrangler pages deploy apps/doc-agent-web/dist --project-name=doc-agent --branch=main",
     "changeset:version": "changeset version",
     "release": "pnpm build && changeset publish"
   },
